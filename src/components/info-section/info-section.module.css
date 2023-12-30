@@ -1,0 +1,28 @@
+.sectionWrapper {
+  display: flex;
+  justify-content: center;
+}
+
+.section {
+  display: flex;
+  gap: 100px;
+  margin: 100px 0;
+}
+
+.sectionInfo {
+  max-width: 500px;
+}
+
+.sectionTitle {
+  font-size: 64px;
+ margin: 0 0 40px;
+}
+
+.sectionDescription {
+  font-size: 18px;
+  margin: 0;
+}
+
+.sectionImage {
+  width: 360px;
+}
