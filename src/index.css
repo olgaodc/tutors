@@ -7,3 +7,9 @@ body {
   background-color: rgb(235, 235, 235);
   font-family: 'Manrope', sans-serif;
 }
+
+/* .ant-select-selection-item::before {
+  content: url('./assets/sort_icon.png');
+  display: inline-block;
+  height: 20px;
+} */

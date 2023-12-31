@@ -1,18 +1,38 @@
 .title {
-  font-size: 50px;
+  font-size: 46px;
   text-align: center;
-  margin-top: 0;
+  margin: 0 0 30px;
+  padding-top: 30px;
+}
+
+.search {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sortBar {
+  margin-top: 20px;
+  display: flex;
+  /* justify-content: space-between; */
+  gap: 40px;
+  width: 60%;
+}
+
+.tutorsNumber {
+  font-size: 24px;
 }
 
 .tutorsSection {
   display: flex;
   flex-wrap: wrap;
   gap: 30px;
-  margin-top: 40px;
+  max-width: 900px;
+  margin: 40px auto 70px;
 }
 
 .tutorCard {
-  width: calc((100% - 90px ) / 4);
+  width: calc((100% - 60px ) / 3);
   /* min-width: 210px; */
   background-color: rgb(245, 245, 245);
   height: 140px;
@@ -23,6 +43,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 15px;
+  cursor: pointer;
   transition: all 2s;
 }
 
