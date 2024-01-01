@@ -4,7 +4,8 @@ import React, { useEffect, useState } from 'react';
 import Container from '../container/container';
 import { Button, DatePicker, Empty, Input, Select, Space, Spin } from 'antd';
 import styles from './tutors-section.module.css';
-import StudyIcon from '../../assets/study_icon.png';
+import BookIcon from '../../assets/book_icon.png';
+import HatIcon from '../../assets/hat_icon.png';
 
 const TutorsSection = () => {
   const [initialTutors, setInitialTutors] = useState([]);
@@ -112,8 +113,13 @@ const TutorsSection = () => {
                     <div className={styles.tutorPrice}>{tutor.hourly_price} €/h</div>
                   </div>
                   <div className={styles.tutorSpecialization}>
-                    <img className={styles.studyIcon} src={StudyIcon} alt='book icon' />
+                    <img className={styles.hatIcon} src={HatIcon} alt='educatin hat icon' />
+
                     <div className={styles.discipline}>{tutor.tutor_specialization}</div>
+                  </div>
+                  <div className={styles.tutorLessons}>
+                    <img className={styles.bookIcon} src={BookIcon} alt='book icon' />
+                    <div className={styles.discipline}>{tutor.lessons.length} active lessons</div>
                   </div>
 
                 </div>

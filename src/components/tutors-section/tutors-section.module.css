@@ -37,7 +37,6 @@
 
 .tutorCard {
   background-color: rgb(245, 245, 245);
-  height: 140px;
   border-radius: 8px;
   padding: 25px;
   display: flex;
@@ -70,15 +69,15 @@
   color: rgb(240, 71, 19);
 }
 
-.tutorSpecialization {
+.tutorSpecialization, .tutorLessons {
   display: flex;
   align-items: flex-end;
   gap: 8px;
 }
 
-.studyIcon {
+.bookIcon, .hatIcon {
   display: block;
-  height: 26px;
+  height: 24px;
 }
 
 .discipline {
