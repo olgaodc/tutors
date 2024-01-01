@@ -11,11 +11,15 @@
   align-items: center;
 }
 
+.searchBar {
+  width: 60%;
+}
+
 .sortBar {
   margin-top: 20px;
   display: flex;
-  /* justify-content: space-between; */
-  gap: 40px;
+  flex-wrap: wrap;
+  gap: 20px 40px;
   width: 60%;
 }
 
@@ -24,20 +28,17 @@
 }
 
 .tutorsSection {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
   gap: 30px;
   max-width: 900px;
-  margin: 40px auto 70px;
+  margin: 40px auto 90px;
 }
 
 .tutorCard {
-  width: calc((100% - 60px ) / 3);
-  /* min-width: 210px; */
   background-color: rgb(245, 245, 245);
   height: 140px;
   border-radius: 8px;
-  /* box-shadow: 2px 1px 8px 2px #6362626c; */
   padding: 25px;
   display: flex;
   flex-direction: column;
@@ -59,11 +60,13 @@
 }
 
 .tutorName {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 600;
+  width: calc(100% - 70px);
 }
 
 .tutorPrice {
+  width: 50px;
   color: rgb(240, 71, 19);
 }
 
@@ -76,13 +79,28 @@
 .studyIcon {
   display: block;
   height: 26px;
-  /* width: 20px; */
 }
 
 .discipline {
-  /* color: rgb(219, 93, 9); */
   font-size: 18px;
 }
 
+.emptyWrapper, .spinWrapper {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
 
+@media (max-width: 802px) {
 
+  .sortBar,
+  .searchBar {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 32px;
+  }
+}

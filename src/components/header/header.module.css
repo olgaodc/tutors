@@ -1,5 +1,4 @@
 .headerWrapper {
-  /* background: linear-gradient(to right, rgb(252, 92, 125), rgb(106, 130, 251)); */
   position: relative;
   background-image: url('../../assets/study.jpg');
   background-size: cover;
@@ -19,7 +18,7 @@
 
 .logo {
   padding-top: 15px;
-  font-size: 24px;
+  font-size: 26px;
   font-family: 'Cherry Bomb One', cursive;
   color: rgb(246, 245, 247);
   position: relative;
@@ -28,12 +27,18 @@
 
 
 .header {
-  height: 450px;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  z-index: 5;
+}
+
+.titleWrapper {
+  height: calc(100vh - 50px);
   display: flex;
   flex-direction: column;
   justify-content: center;
-  position: relative;
-  z-index: 5;
 }
 
 .title {
@@ -42,10 +47,15 @@
   margin-bottom: 30px;
   margin-top: 0;
   max-width: 900px;
-  text-align: left;
-  /* font-family: 'Permanent Marker', cursive; */
 }
 
 .button {
-  max-width: 100px;
+  max-width: 120px;
+  font-weight: 500;
+}
+
+@media (max-width: 576px) {
+  .title {
+    font-size: 42px;
+  }
 }

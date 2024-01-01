@@ -2,16 +2,16 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 import React, { useEffect, useState } from 'react';
 import Container from '../container/container';
-import { Button, DatePicker, Input, Select, Space } from 'antd';
+import { Button, DatePicker, Empty, Input, Select, Space, Spin } from 'antd';
 import styles from './tutors-section.module.css';
 import StudyIcon from '../../assets/study_icon.png';
-// import SortImage from '../../assets/sort_icon.png';
 
 const TutorsSection = () => {
   const [initialTutors, setInitialTutors] = useState([]);
   const [tutors, setTutors] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
   const [selectedDate, setSelectedDate] = useState(null);
+  const [isLoaded, setLoaded] = useState(false);
 
   useEffect(() => {
     getTutors();
@@ -21,9 +21,10 @@ const TutorsSection = () => {
     try {
       const response = await axios.get('https://tutors-back.onrender.com/tutors');
       const tutorsData = response.data;
+
       setInitialTutors(tutorsData);
       setTutors(tutorsData);
-      console.log(response.data);
+      setLoaded(true);
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +33,7 @@ const TutorsSection = () => {
   const handleSearch = () => {
     const formattedDate = selectedDate ? dayjs(selectedDate).format('YYYY-MM-DD') : null;
 
-    
+
     const filteredTutors = initialTutors.filter(tutor => {
       const nameMatch = tutor.tutor_name.toLowerCase().includes(searchTerm.toLowerCase());
       const surnameMatch = tutor.tutor_surname.toLowerCase().includes(searchTerm.toLowerCase());
@@ -50,7 +51,7 @@ const TutorsSection = () => {
         setTutors(prev => [...prev].sort((a, b) => a.tutor_id - b.tutor_id));
         break;
       case 'name':
-        setTutors(prev => [...prev].sort((a, b) => a.tutor_name.localeCompare(b.tutor_name)));
+        setTutors(prev => [...prev].sort((a, b) => (a.tutor_name + ' ' + a.tutor_surname).localeCompare(b.tutor_name + ' ' + b.tutor_surname)));
         break;
       case 'price':
         setTutors(prev => [...prev].sort((a, b) => a.hourly_price - b.hourly_price));
@@ -68,9 +69,10 @@ const TutorsSection = () => {
       <section className={styles.tutorsSectionWraper} id="tutorsSection">
         <h2 className={styles.title}>Find your subject expert🚀</h2>
         <div className={styles.search}>
-          <Space.Compact style={{ width: '60%' }}>
+          <Space.Compact className={styles.searchBar}>
             <Input
               placeholder="Search tutor"
+              maxLength={20}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
             <DatePicker
@@ -85,9 +87,7 @@ const TutorsSection = () => {
             </Button>
           </Space.Compact>
           <div className={styles.sortBar}>
-            <div className={styles.tutorsNumber}>{tutors.length} tutrs available</div>
-            {/* <Space.Compact> */}
-            {/* <img src={SortImage} alt='sort icon' /> */}
+            <div className={styles.tutorsNumber}>{tutors.length} tutors available</div>
             <Select
               className={styles.sort}
               defaultValue="sort"
@@ -100,24 +100,29 @@ const TutorsSection = () => {
                 { value: 'availability', label: 'Availability' },
               ]}
             />
-            {/* </Space.Compact> */}
           </div>
         </div>
-        <div className={styles.tutorsSection}>
-          {tutors.map(tutor => (
-            <div className={styles.tutorCard} key={tutor.tutor_id}>
-              <div className={styles.tutorNameWrapper}>
-                <div className={styles.tutorName}>{tutor.tutor_name} {tutor.tutor_surname}</div>
-                <div className={styles.tutorPrice}>{tutor.hourly_price} €/h</div>
-              </div>
-              <div className={styles.tutorSpecialization}>
-                <img className={styles.studyIcon} src={StudyIcon} alt='book icon' />
-                <div className={styles.discipline}>{tutor.tutor_specialization}</div>
-              </div>
+        {isLoaded ? (
+          tutors.length ? (
+            <div className={styles.tutorsSection}>
+              {tutors.map(tutor => (
+                <div className={styles.tutorCard} key={tutor.tutor_id}>
+                  <div className={styles.tutorNameWrapper}>
+                    <div className={styles.tutorName}>{tutor.tutor_name} {tutor.tutor_surname}</div>
+                    <div className={styles.tutorPrice}>{tutor.hourly_price} €/h</div>
+                  </div>
+                  <div className={styles.tutorSpecialization}>
+                    <img className={styles.studyIcon} src={StudyIcon} alt='book icon' />
+                    <div className={styles.discipline}>{tutor.tutor_specialization}</div>
+                  </div>
 
+                </div>
+              ))}
             </div>
-          ))}
-        </div>
+          ) : (<div className={styles.emptyWrapper}><Empty /></div>)
+        ) : (<div className={styles.spinWrapper}><Spin size='large' /></div>)
+        }
+
       </section>
     </Container>
   )

@@ -26,3 +26,35 @@
 .sectionImage {
   width: 360px;
 }
+
+@media (max-width: 802px) {
+  .section {
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+  }
+
+  .sectionInfo {
+    max-width: 620px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 30px;
+  }
+}
+
+@media (max-width: 576px) {
+  .section {
+    gap: 20px;
+  }
+
+  .sectionTitle {
+    font-size: 38px;
+    margin-bottom: 20px;
+  }
+
+  .sectionImage {
+    max-width: 360px;
+    width: 100%;
+  }
+}

@@ -13,16 +13,19 @@ const Header = () => {
   return (
     <div className={styles.headerWrapper}>
       <Container>
-        <div className={styles.logo}>tutorland</div>
         <header className={styles.header}>
-          <h1 className={styles.title}>Discover your learning journey with the best tutors</h1>
-          <Button
-            type="primary"
-            className={styles.button}
-            onClick={handleClick}
-          >
-            Get started
-          </Button>
+          <div className={styles.logo}>tutorland</div>
+          <div className={styles.titleWrapper}>
+            <h1 className={styles.title}>Discover your learning journey with the best tutors</h1>
+            <Button
+              type="primary"
+              size='large'
+              className={styles.button}
+              onClick={handleClick}
+            >
+              Get started
+            </Button>
+          </div>
         </header>
       </Container>
     </div>
